@@ -27,7 +27,7 @@
         }} else {
             int index = (int) number;
             while (index<= otherNumber){
-                [hai addObject:[NSNumber numberWithInt:index]];
+                [hai addObject:[NSNumbgier numberWithInt:index]];
                 index+=1;
             }
         }
