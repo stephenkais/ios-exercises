@@ -7,8 +7,7 @@ Strings
 */
 
 func favoriteCheeseStringWithCheese(cheese: String) -> String {
-    // WORK HERE
-    return cheese
+    return "My favorite cheese is \(cheese)."
 }
 
 let fullSentence = favoriteCheeseStringWithCheese("cheddar")
@@ -22,11 +21,12 @@ Arrays & Dictionaries
 
 let numberArray = [1, 2, 3, 4]
 // Add 5 to this array
-// WORK HERE
+let newArray = numberArray + [5]
 
 let numberDictionary = [1 : "one", 2 : "two", 3 : "three", 4 : "four"]
 // Add 5 : "five" to this dictionary
-// WORK HERE
+var mutableDict = numberDictionary
+mutableDict[5] = "five"
 
 /*
 
@@ -35,10 +35,14 @@ Loops
 */
 
 // Use a closed range loop to print 1 - 10, inclusively
-// WORK HERE
+for i in 1 ... 10 {
+    print(i)
+}
 
 // Use a half-closed range loop to print 1 - 10, inclusively
-// WORK HERE
+for i in 1 ..< 11 {
+    print(i)
+}
 
 let worf = [
     "name": "Worf",
@@ -57,8 +61,16 @@ let characters = [worf, picard]
 
 func favoriteDrinksArrayForCharacters(characters:[[String : String]]) -> [String] {
     // return an array of favorite drinks, like ["prune juice", "tea, Earl Grey, hot"]
-    // WORK HERE
-    return []
+    var rv = [String]()
+    for character in characters {
+        for (label, value) in character{
+            if label == "favorite drink"{
+                rv += [value]
+            }
+        }
+
+    }
+    return rv
 }
 
 let favoriteDrinks = favoriteDrinksArrayForCharacters(characters)
@@ -73,9 +85,11 @@ Optionals
 
 func emailFromUserDict(userDict : [String : String]) -> String {
     // Return the user's email address from userDict, or return "" if they don't have one
-    
-    // WORK HERE
-    return "user@example.com"
+    if let unwrappedEmail = userDict["email"]{
+        return unwrappedEmail
+    } else {
+        return ""
+    }
 }
 
 
@@ -98,8 +112,13 @@ Functions
 // Make a function that inputs an array of strings and outputs the strings separated by a semicolon
 
 let strings = ["milk", "eggs", "bread", "challah"]
-
-// WORK HERE - make your function and pass `strings` in
+func semiColoner(input : NSArray) -> String {
+    var rv = ""
+    for inp in input{
+        rv += (inp as! String + ";")
+    }
+    return rv
+}
 
 let expectedOutput = "milk;eggs;bread;challah"
 
@@ -112,4 +131,5 @@ Closures
 let cerealArray = ["Golden Grahams", "Cheerios", "Trix", "Cap'n Crunch OOPS! All Berries", "Cookie Crisp"]
 
 // Use a closure to sort this array alphabetically
-// WORK HERE
+let sortedArray = cerealArray.sort( {(cereal1, cereal2) in cereal1 > cereal2})
+print(sortedArray)
